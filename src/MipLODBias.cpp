@@ -80,8 +80,6 @@ void MipLODBias::Menu()
 		Save();
 	}
 
-	ImGui::Checkbox("Grass Sampler Fix", &_fixGrass);
-
 	ImGui::Checkbox("Force Disable", &_forceDisable);
 	ImGui::SameLine();
 	ImGui::InputFloat("Mip LOD Bias", &_mipLODBias);
@@ -95,10 +93,8 @@ void MipLODBias::Load()
 	ini.SetUnicode();
 	ini.LoadFile(L"Data\\SKSE\\Plugins\\TAADeblur.ini");
 
-	_fixGrass = ini.GetBoolValue("Fixes", "GrassSamplerFix", true);
-
-	_forceDisable = ini.GetBoolValue("TAA", "ForceDisable", false);
-	_mipLODBias = (float)ini.GetDoubleValue("TAA", "MipLODBias", false);
+	_forceDisable = ini.GetBoolValue("Settings", "ForceDisable", false);
+	_mipLODBias = (float)ini.GetDoubleValue("Settings", "MipLODBias", false);
 }
 
 void MipLODBias::Save()
@@ -107,11 +103,9 @@ void MipLODBias::Save()
 
 	CSimpleIniA ini;
 	ini.SetUnicode();
-
-	ini.SetBoolValue("Fixes", "GrassSamplerFix", _fixGrass);
 	
-	ini.SetBoolValue("TAA", "ForceDisable", _forceDisable);
-	ini.SetDoubleValue("TAA", "MipLODBias", _mipLODBias);
+	ini.SetBoolValue("Settings", "ForceDisable", _forceDisable);
+	ini.SetDoubleValue("Settings", "MipLODBias", _mipLODBias);
 
 	ini.SaveFile(L"Data\\SKSE\\Plugins\\TAADeblur.ini");
 }

@@ -98,28 +98,9 @@ protected:
 			static inline REL::Relocation<decltype(thunk)> func;
 		};
 
-		struct Grass_SetDirtyStates
-		{
-			static void thunk(bool a_compute)
-			{
-				func(a_compute);
-
-				// Override grass sampler
-
-				if (GetSingleton()->_fixGrass) {
-					auto manager = RE::BSRenderManager::GetSingleton();
-					auto context = manager->GetRuntimeData().context;
-
-					context->PSSetSamplers(0, 1, &SamplerStatesCollection::GetSingleton()->states[0][3]);
-				}
-			}
-			static inline REL::Relocation<decltype(thunk)> func;
-		};
-
 		static void Install()
 		{
 			stl::write_thunk_call<Main_UpdateViewport>(REL::RelocationID(35556, 36555).address() + 0x2D);
-			stl::write_thunk_call<Grass_SetDirtyStates>(REL::RelocationID(75479, 77265).address() + 0x61);
 		}
 	};
 
