@@ -46,7 +46,7 @@ struct SamplerStatesCollection
 
 	static SamplerStatesCollection* GetSingleton()
 	{
-		REL::Relocation<SamplerStatesCollection*> instance{ REL::RelocationID(524751, 411366) };  // 31D11A0, 326B280, 34234C0
+		REL::Relocation<SamplerStatesCollection*> instance{ REL::RelocationID(524751, 411366) };
 		return instance.get();
 	}
 };
@@ -118,8 +118,8 @@ protected:
 
 		static void Install()
 		{
-			stl::write_thunk_call<Main_UpdateViewport>(REL::RelocationID(35556, 36555).address() + REL::Relocate(0x2D, 0x2D, 0x25));
-			stl::write_thunk_call<Grass_SetDirtyStates>(REL::RelocationID(35556, 77265).address() + 0x61);
+			stl::write_thunk_call<Main_UpdateViewport>(REL::RelocationID(35556, 36555).address() + 0x2D);
+			stl::write_thunk_call<Grass_SetDirtyStates>(REL::RelocationID(75479, 77265).address() + 0x61);
 		}
 	};
 
