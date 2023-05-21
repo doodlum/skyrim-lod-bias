@@ -19,7 +19,7 @@ struct UnkOuterStruct
 
 	static UnkOuterStruct* GetSingleton()
 	{
-		REL::Relocation<UnkOuterStruct*&> instance{ REL::VariantID(527731, 414660, 0x34234C0) };  // 31D11A0, 326B280, 34234C0
+		REL::Relocation<UnkOuterStruct*&> instance{ REL::RelocationID(527731, 414660) };  // 31D11A0, 326B280, 34234C0
 		return instance.get();
 	}
 
@@ -100,7 +100,7 @@ protected:
 
 		static void Install()
 		{
-			stl::write_thunk_call<Main_UpdateViewport>(REL::RelocationID(35556, 36555).address() + 0x2D);
+			stl::write_thunk_call<Main_UpdateViewport>(REL::RelocationID(35556, 36555).address() + REL::VariantOffset(0x2D, 0x2D, 0x25).offset());
 		}
 	};
 
