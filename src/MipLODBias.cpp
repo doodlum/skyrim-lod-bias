@@ -26,8 +26,8 @@ void MipLODBias::Update()
 	static float mipLODBias = 0;
 
 	if (shouldEnable != _enabled || mipLODBias != _mipLODBias) {
-		auto manager = RE::BSRenderManager::GetSingleton();
-		auto device = manager->GetRuntimeData().forwarder;
+		auto manager = RE::BSGraphics::Renderer::GetSingleton();
+		auto device = reinterpret_cast<ID3D11Device*>(manager->GetRuntimeData().forwarder);
 
 		for (int i = 0; i < AddressMode; i++) {
 			for (int k = 0; k < FilterMode; k++) {
